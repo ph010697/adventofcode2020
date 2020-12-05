@@ -12,9 +12,7 @@ public class MainClass {
             put("lowerRow", (long) 0);
             put("upperRow", (long) 127);
             put("lowerCol", (long) 0);
-            put("upperCol", (long) 7);
-            put("diffRow", (long) 128);
-            put("diffCol", (long) 8);}};
+            put("upperCol", (long) 7);}};
 
         for(int i=0;i<inputLines.length;i++)
         {
@@ -61,8 +59,6 @@ public class MainClass {
                     break;
             }
 
-            seatMap.put("diffRow", seatMap.get("upperRow") - seatMap.get("lowerRow") + 1);
-            seatMap.put("diffCol", seatMap.get("upperCol") - seatMap.get("lowerCol") + 1);
             seatBinaryCombination= seatBinaryCombination.substring(1);
             return findSeat(seatBinaryCombination, seatMap);
         }
