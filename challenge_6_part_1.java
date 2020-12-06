@@ -2058,7 +2058,7 @@ public class MainClass {
 
             if(endOfGroup) {
                 endOfGroup=false;
-                groupsTotalSum+=findAllYesAnswers(currentGroupMap);
+                groupsTotalSum+=findAllYesAnswers(currentGroupMap,false);
                 currentGroupMap.clear();
             }
             else
@@ -2068,7 +2068,7 @@ public class MainClass {
         System.out.println(groupsTotalSum);
     }
 
-    public static Integer findAllYesAnswers(Map<Integer,String> currentGroupMap)
+    public static Integer findAllYesAnswers(Map<Integer,String> currentGroupMap,boolean onlyEveryoneYesAnswers) 
     {
         Map<String,Integer> answersMap = new HashMap<>();
         for (Map.Entry<Integer,String> personAnswers : currentGroupMap.entrySet()){
@@ -2079,6 +2079,15 @@ public class MainClass {
                 else
                     answersMap.put(currentYesAnswer,1);
             }
+        }
+        if(onlyEveryoneYesAnswers)
+        {
+            int currentGroupEveryoneYesCounter = 0;
+            for (Map.Entry<String, Integer> answer : answersMap.entrySet()) {
+                if(answer.getValue()== currentGroupMap.size())
+                    currentGroupEveryoneYesCounter++;
+            }
+            return currentGroupEveryoneYesCounter;
         }
         return answersMap.size();
     }
